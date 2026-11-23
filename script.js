@@ -9,6 +9,7 @@ const publications = [
   {year:'2025', journal:'Natural Sciences and Medicine', title:'Changes in the Cellular Composition of Peripheral Blood Following Traumatic Brain Injury', url:'https://sibac.info/conf/medicine/64/386005', label:'Read the paper', image:'sibac-first-page.png', alt:'First page of the paper on peripheral blood composition after traumatic brain injury', caption:'First page · Nwosu, Nabiullina and Rodkin'}
 ];
 const rights = [
+  ['2026669583','Software module for assessing image annotation quality','9 Jul 2026'],
   ['2026660701','Neural-network messenger bot for automated cell culture counting','Apr 2026'],
   ['2025664628','Software for biological image and metadata preprocessing and inference post-processing','2025'],
   ['2024688638','Software for counting eukaryotic cells during in vitro cultivation','Nov 2024']
