@@ -1,0 +1,45 @@
+.theme-toggle{border:1px solid var(--line);border-radius:100px;background:#fff;color:var(--ink);font:700 13px Manrope,Arial,sans-serif;white-space:nowrap;padding:11px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .25s,color .25s,transform .25s}
+.theme-toggle:hover{transform:translateY(-2px)}
+.theme-toggle span:first-child{font-size:18px;line-height:1;color:#c23e91}
+body[data-theme=pink]{--ink:#44243c;--muted:#76536b;--line:#efc9e0;--blue:#ab2677;background:#fff7fc;color:var(--ink)}
+body[data-theme=pink] .topbar,body[data-theme=pink] .footer{background:transparent}
+body[data-theme=pink] .brand-dot{color:#dc5aaf}
+body[data-theme=pink] .theme-toggle{background:#9a236d;color:#fff;border-color:#9a236d;box-shadow:0 7px 20px #d44d9c30}
+body[data-theme=pink] .theme-toggle span:first-child{color:#fff}
+body[data-theme=pink] .hero{position:relative}
+body[data-theme=pink] .hero::before{content:"";position:absolute;inset:0 -20px;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,#e684bc 2px,transparent 3px),radial-gradient(circle,#f5b9dd 1.5px,transparent 2.5px);background-size:165px 185px,117px 143px;background-position:24px 18px,80px 64px;opacity:.5}
+body[data-theme=pink] .eyebrow,body[data-theme=pink] .kicker{color:#a52779}
+body[data-theme=pink] .pulse{background:#db66ac;box-shadow:0 0 0 5px #ffe1f1}
+body[data-theme=pink] .mode-control{background:#f5ddea}
+body[data-theme=pink] .mode{color:#6a3d59}
+body[data-theme=pink] .mode.active{background:#7f255f;color:#fff}
+body[data-theme=pink] .hero-lead,body[data-theme=pink] .feature-card p,body[data-theme=pink] .lower-grid ul{color:#6e5066}
+body[data-theme=pink] .hero-meta,body[data-theme=pink] .timeline p{color:#805b73}
+body[data-theme=pink] .primary,body[data-theme=pink][data-mode=research] .primary{background:#ad287c}
+body[data-theme=pink] .primary:hover{background:#8f1c66}
+body[data-theme=pink] .quiet{background:#fff9fd}
+body[data-theme=pink] .quiet:hover{background:#f9e3f0}
+body[data-theme=pink] .hero h1 em,body[data-theme=pink][data-mode=research] .hero h1 em,body[data-theme=pink] .contact h2 em,body[data-theme=pink][data-mode=research] .contact h2 em{color:#bf378d}
+body[data-theme=pink] .hero-visual{background:radial-gradient(circle at 65% 28%,#dd80baaa,transparent 34%),radial-gradient(circle at 22% 70%,#ab387e99,transparent 40%),#4c1d44;box-shadow:0 30px 70px #b3438850}
+body[data-theme=pink] .hero-visual::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,#fff 2px,transparent 3px),radial-gradient(circle,#ffd5f0 1.5px,transparent 2.5px),radial-gradient(circle,#fff7fd 1px,transparent 2px);background-size:109px 127px,79px 97px,53px 73px;background-position:15px 13px,31px 49px,48px 22px;filter:drop-shadow(0 0 5px #fff);animation:twinkle 4s ease-in-out infinite alternate}
+body[data-theme=pink] .cell{border-color:#ffdeecaa;box-shadow:inset 0 0 25px #fff4f0aa,0 0 35px #ff9cdbaa;background:#f3a4cb44}
+body[data-theme=pink] .focus-box{z-index:1;background:#5a2355df;border-color:#ffc6e6}
+body[data-theme=pink] .focus-box span{color:#ffd0eb}
+body[data-theme=pink] .signal{background:#fce6f2}
+body[data-theme=pink] .signal-grid>div{border-color:#e6bad3}
+body[data-theme=pink] .signal span{color:#71516a}
+body[data-theme=pink] .feature-card:first-child,body[data-theme=pink][data-mode=research] .feature-card:first-child{background:#fff0f8}
+body[data-theme=pink] .tags span{background:#f8dfed;color:#71405d}
+body[data-theme=pink] .section-dark{background:#4c2044}
+body[data-theme=pink] .section-dark .kicker,body[data-theme=pink] .skill-list span{color:#ffd0eb}
+body[data-theme=pink] .section-dark .muted,body[data-theme=pink] .skill-list p{color:#f1d6e7}
+body[data-theme=pink] .skill-list>div{border-color:#825273}
+body[data-theme=pink] .section-tint{background:#fcecf5}
+body[data-theme=pink] .rid-card{background:#fffafd}
+body[data-theme=pink] .contact{background:#f7d8e9}
+body[data-theme=pink] .contact-links a{border-color:#dfa8c8}
+@keyframes twinkle{from{opacity:.45;transform:translateY(0)}to{opacity:.95;transform:translateY(-5px)}}
+@media(max-width:760px){.topbar{flex-wrap:wrap;height:auto;padding-top:16px;padding-bottom:16px}.topbar nav{order:3;width:100%;justify-content:space-between}.theme-toggle{margin-left:auto}}
+@media(max-width:650px){.topbar nav a:nth-child(2),.topbar nav a:nth-child(3){display:inline}.theme-toggle{padding:9px 12px}.theme-label{font-size:12px}}
+@media(max-width:390px){.topbar nav a:nth-child(3){display:none}}
+@media(prefers-reduced-motion:reduce){.theme-toggle{transition:none}body[data-theme=pink] .hero-visual::after{animation:none}}
