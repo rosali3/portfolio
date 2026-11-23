@@ -12,11 +12,14 @@
 .pub-details h3{margin:10px 0 14px}
 .pub-details>a{text-align:left}
 .project-link{align-self:flex-start;margin-top:20px;color:var(--blue);font-size:13px;font-weight:800;text-underline-offset:4px}
-.grant{padding:54px 0;background:#edf4f2}
-.grant-inner{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:center}
-.grant .kicker{margin:0}
-.grant h2{font-size:clamp(26px,3vw,40px);letter-spacing:-.05em;margin:0}
-.grant p:last-child{margin:0;font-weight:700}
+.summary-text{max-width:900px;font-size:clamp(21px,2.8vw,34px);line-height:1.5;letter-spacing:-.035em;margin:0}
+.fact-list{list-style:none;padding:0;margin:0;max-width:900px}
+.fact-list li{border-top:1px solid var(--line);padding:19px 0;font-size:17px;line-height:1.5}
+.fact-list li:last-child{border-bottom:1px solid var(--line)}
+.timeline>div{grid-template-columns:150px minmax(0,1fr);gap:8px 28px}
+.timeline>div p{grid-column:2}
+.timeline .gpa{color:var(--blue);font-weight:800}
+.publication-clone{display:none!important}
 .publication-controls{display:none}
 body[data-layout=plain]{--ink:#18212b;--muted:#566171;--line:#d9dee5;--blue:#234c85;font-family:Arial,Helvetica,sans-serif;background:#fff}
 body[data-layout=plain] .wrap{width:min(880px,calc(100% - 48px))}
@@ -58,9 +61,7 @@ body[data-layout=plain] .publication h3{font-size:16px;line-height:1.5}
 body[data-layout=plain] .contact{background:#f5f7f9;padding:65px 0}
 body[data-layout=plain] .contact-links{max-width:520px}
 body[data-layout=plain] .contact-links a{border-color:var(--line)}
-body[data-layout=plain] .grant{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-body[data-layout=plain] .grant-inner{display:block}
-body[data-layout=plain] .grant h2{font:700 32px Georgia,'Times New Roman',serif;margin:16px 0 10px}
+body[data-layout=plain] .summary-text{font:400 18px/1.65 Arial,Helvetica,sans-serif;letter-spacing:0}
 body[data-layout=visual]{--ink:#1f2328;--muted:#59616a;--line:#d7d9dc;--blue:#c1542d;background:#f7f6f2;color:var(--ink)}
 body[data-layout=visual] .topbar{border-bottom:1px solid #d7d9dc}
 body[data-layout=visual] .brand-mark{font-family:Georgia,serif;font-size:27px}
@@ -87,8 +88,9 @@ body[data-layout=visual] .section-dark .kicker,body[data-layout=visual] .skill-l
 body[data-layout=visual] .section-tint{background:#edeae2}
 body[data-layout=visual] .rid-card{background:#faf9f5}
 body[data-layout=visual] .contact{background:#e8ded2}
-body[data-layout=visual] .grant{background:#e8ded2}
-body[data-layout=visual] .grant h2{font-family:Georgia,'Times New Roman',serif}
+body[data-layout=visual] .summary-text{font-family:Georgia,'Times New Roman',serif}
+body[data-layout=visual][data-mode=research] #work .feature-card:first-child{order:2}
+body[data-layout=visual] .publication-clone{display:grid!important}
 body[data-layout=visual] .publication-viewport{overflow:hidden;outline-offset:5px}
 body[data-layout=visual] .publication-list{display:flex;transition:transform .45s ease;align-items:stretch}
 body[data-layout=visual] .publication{flex:0 0 100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:34px;padding:0;border:0;align-items:center}
@@ -107,5 +109,5 @@ body[data-layout=visual] .publication-controls{display:flex;align-items:center;j
 @media(max-width:650px){.topbar nav a:nth-child(2),.topbar nav a:nth-child(3){display:inline}.layout-button{padding:9px 10px;font-size:11px}.publication{display:block}.pub-figure{margin-bottom:17px}.pub-figure img{height:190px}.pub-details h3{margin:9px 0 12px}body[data-layout=plain] .hero{padding:43px 0}body[data-layout=plain] .wrap{width:min(100% - 36px,880px)}}
 @media(max-width:650px){body[data-layout=plain] .timeline>div{grid-template-columns:1fr}body[data-layout=plain] .timeline p{grid-column:1}}
 @media(max-width:410px){.topbar nav a:nth-child(3){display:none}.layout-control{width:100%;order:2}.layout-button{flex:1}}
-@media(max-width:650px){.grant-inner{display:block}.grant h2{margin:15px 0}.grant p:last-child{line-height:1.5}body[data-layout=visual] .publication{display:block}body[data-layout=visual] .pub-figure img{height:240px}body[data-layout=visual] .pub-details{padding:20px 2px 5px}}
+@media(max-width:650px){.timeline>div{grid-template-columns:1fr}.timeline>div p{grid-column:1}body[data-layout=visual] .publication,body[data-layout=visual] .publication-clone{display:block!important}body[data-layout=visual] .pub-figure img{height:240px}body[data-layout=visual] .pub-details{padding:20px 2px 5px}}
 @media(prefers-reduced-motion:reduce){body[data-layout=visual] .publication-list{transition:none}}

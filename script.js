@@ -9,10 +9,9 @@ const publications = [
   {year:'2025', journal:'Natural Sciences and Medicine', title:'Changes in the Cellular Composition of Peripheral Blood Following Traumatic Brain Injury', url:'https://sibac.info/conf/medicine/64/386005', label:'Read the paper', image:'sibac-first-page.png', alt:'First page of the paper on peripheral blood composition after traumatic brain injury', caption:'First page · Nwosu, Nabiullina and Rodkin'}
 ];
 const rights = [
-  ['2024688638','Software for counting eukaryotic cells during in vitro cultivation','29 Nov 2024'],
-  ['2025664628','Software for preprocessing biological images and metadata for machine learning and inference postprocessing','5 Jun 2025'],
-  ['2026660701','Neural-network messenger bot for automated cell culture counting','14 Apr 2026'],
-  ['2026669583','Software module for assessing image annotation quality','9 Jul 2026']
+  ['2026660701','Neural-network messenger bot for automated cell culture counting','Apr 2026'],
+  ['2025664628','Software for biological image and metadata preprocessing and inference post-processing','2025'],
+  ['2024688638','Software for counting eukaryotic cells during in vitro cultivation','Nov 2024']
 ];
 const list = document.getElementById('publication-list');
 const viewport = document.getElementById('publication-viewport');
@@ -20,6 +19,7 @@ const prev = document.getElementById('publication-prev');
 const next = document.getElementById('publication-next');
 const count = document.getElementById('publication-count');
 let publicationIndex = 0;
+let trackPosition = 1;
 let mode = 'ml';
 function renderPublications(){
   list.replaceChildren(...publications.map(item=>{
@@ -37,43 +37,61 @@ function renderPublications(){
     const link=document.createElement('a'); link.href=item.url; link.target='_blank'; link.rel='noopener noreferrer'; link.textContent=item.label;
     details.append(meta,title,link); row.append(figure,details); return row;
   }));
-  updateCarousel();
+  const first=list.firstElementChild.cloneNode(true);
+  const last=list.lastElementChild.cloneNode(true);
+  for(const clone of [first,last]){clone.classList.add('publication-clone');clone.setAttribute('aria-hidden','true');clone.inert=true}
+  list.prepend(last);
+  list.append(first);
+  updateCarousel(true);
 }
-function updateCarousel(){
+function updateCarousel(instant=false){
   const visual=document.body.dataset.layout==='visual';
-  const slides=[...list.children];
-  list.style.transform=visual?`translateX(-${publicationIndex*100}%)`:'';
+  const slides=[...list.querySelectorAll('.publication:not(.publication-clone)')];
+  list.style.transition=instant?'none':'';
+  list.style.transform=visual?`translateX(-${trackPosition*100}%)`:'';
   slides.forEach((slide,index)=>{
     if(visual){slide.setAttribute('aria-hidden',String(index!==publicationIndex));slide.inert=index!==publicationIndex}
     else{slide.removeAttribute('aria-hidden');slide.inert=false}
   });
   count.textContent=`${publicationIndex+1} / ${slides.length}`;
-  prev.disabled=publicationIndex===0;
-  next.disabled=publicationIndex===slides.length-1;
+  if(instant)requestAnimationFrame(()=>{list.style.transition=''});
+}
+function movePublication(direction){
+  if(trackPosition===0)trackPosition=publications.length;
+  if(trackPosition===publications.length+1)trackPosition=1;
+  publicationIndex=(publicationIndex+direction+publications.length)%publications.length;
+  trackPosition+=direction;
+  updateCarousel();
 }
 function setMode(next){
   mode=next; document.body.dataset.mode=next;
   document.querySelectorAll('.mode').forEach(button=>{const active=button.dataset.mode===next;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))});
   document.querySelectorAll('[data-copy]').forEach(element=>element.hidden=element.dataset.copy!==next);
-  document.querySelectorAll('.research-extra').forEach(element=>element.hidden=next!=='research');
+  document.querySelectorAll('[data-mode-only]').forEach(element=>element.hidden=element.dataset.modeOnly!==next);
   try{localStorage.setItem('portfolio-mode',next)}catch{}
 }
 function setLayout(next){
   document.body.dataset.layout=next;
   publicationIndex=0;
+  trackPosition=1;
   viewport.tabIndex=next==='visual'?0:-1;
-  updateCarousel();
+  updateCarousel(true);
   document.querySelectorAll('.layout-button').forEach(button=>{const active=button.dataset.layout===next;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))});
   try{localStorage.setItem('portfolio-layout',next)}catch{}
 }
 document.querySelectorAll('.mode').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mode)));
 document.querySelectorAll('.layout-button').forEach(button=>button.addEventListener('click',()=>setLayout(button.dataset.layout)));
-prev.addEventListener('click',()=>{publicationIndex=Math.max(0,publicationIndex-1);updateCarousel()});
-next.addEventListener('click',()=>{publicationIndex=Math.min(publications.length-1,publicationIndex+1);updateCarousel()});
+prev.addEventListener('click',()=>movePublication(-1));
+next.addEventListener('click',()=>movePublication(1));
+list.addEventListener('transitionend',event=>{
+  if(event.target!==list||event.propertyName!=='transform')return;
+  if(trackPosition===0){trackPosition=publications.length;updateCarousel(true)}
+  if(trackPosition===publications.length+1){trackPosition=1;updateCarousel(true)}
+});
 viewport.addEventListener('keydown',event=>{
   if(document.body.dataset.layout!=='visual')return;
-  if(event.key==='ArrowRight'&&publicationIndex<publications.length-1){event.preventDefault();next.click()}
-  if(event.key==='ArrowLeft'&&publicationIndex>0){event.preventDefault();prev.click()}
+  if(event.key==='ArrowRight'){event.preventDefault();next.click()}
+  if(event.key==='ArrowLeft'){event.preventDefault();prev.click()}
 });
 let touchStart=0;
 viewport.addEventListener('touchstart',event=>{touchStart=event.changedTouches[0].screenX},{passive:true});
