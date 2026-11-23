@@ -4,7 +4,7 @@ const publications = [
   {year:'2025', journal:'International Journal of Molecular Sciences', title:'Investigation of the Expression, Localization, and Acidosis-Associated Conformational Changes in Connexin 43 in Traumatic Brain Injury with the Development of a Neural Network Model for Assessing Systemic Inflammation', url:'https://doi.org/10.3390/ijms26188855', label:'DOI 10.3390/ijms26188855', image:'ijms-8855-fig4.png', alt:'Blood smear microscopy and leukocyte population analysis', caption:'Figure 4 · Nwosu et al. · CC BY 4.0'},
   {year:'2026', journal:'Molecules', title:'Mirror Effect of Parvalbumin and Connexin 43 Expression in the Acute and Subacute Phases After Penetrating Traumatic Brain Injury Reveals a Non-Canonical Interaction', url:'https://doi.org/10.3390/molecules31061018', label:'DOI 10.3390/molecules31061018', image:'molecules-1018-fig8.png', alt:'Confocal brain images showing regular and aggregated Cx43 puncta', caption:'Figure 8 · Kit et al. · CC BY 4.0'},
   {year:'2026', journal:'International Journal of Molecular Sciences', title:'Changes in Connexin-43 Expression and Neuropil Ultrastructure in the Cerebral Cortex of Bats During the Sleep–Wake Cycle', url:'https://doi.org/10.3390/ijms27209171', label:'DOI 10.3390/ijms27209171', image:'ijms-9171-fig4.webp', alt:'DINO-SwinL workflow and microscopy with bounding-box detections of Cx43 gap junctions', caption:'Figure 4 · Rodkin et al. · CC BY 4.0'},
-  {year:'2024', journal:'Voprosy Nauki', title:'Automating Cell Counting in Microphotographs with Computer Vision Methods', url:'https://www.elibrary.ru/item.asp?id=78114318', label:'eLIBRARY record'},
+  {year:'2024', journal:'Voprosy Nauki', title:'Automating Cell Counting in Microphotographs with Computer Vision Methods', url:'https://www.elibrary.ru/item.asp?id=78114318', label:'eLIBRARY record', image:'elibrary-cell-counter-figure2.png', alt:'Telegram bot showing cell microphotographs and segmentation results', caption:'Figure 2 · Nabiullina et al. · user-provided paper'},
   {year:'2025', journal:'Young Researcher of Don', title:'From Cells to Ecosystems: Mathematics of Adaptation', url:'https://mid-journal.ru/upload/iblock/422/0x1ywu7ey7td5dwu4ue3z01i5740x1pl.pdf', label:'Read the paper', image:'mid-first-page.png', alt:'First page of From Cells to Ecosystems: Mathematics of Adaptation', caption:'First page · Nabiullina · CC BY'},
   {year:'2025', journal:'Natural Sciences and Medicine', title:'Changes in the Cellular Composition of Peripheral Blood Following Traumatic Brain Injury', url:'https://sibac.info/conf/medicine/64/386005', label:'Read the paper', image:'sibac-first-page.png', alt:'First page of the paper on peripheral blood composition after traumatic brain injury', caption:'First page · Nwosu, Nabiullina and Rodkin'}
 ];
@@ -15,12 +15,14 @@ const rights = [
   ['2026669583','Software module for assessing image annotation quality','9 Jul 2026']
 ];
 const list = document.getElementById('publication-list');
-const more = document.getElementById('show-more');
-let expanded = false;
+const viewport = document.getElementById('publication-viewport');
+const prev = document.getElementById('publication-prev');
+const next = document.getElementById('publication-next');
+const count = document.getElementById('publication-count');
+let publicationIndex = 0;
 let mode = 'ml';
 function renderPublications(){
-  const count = mode === 'research' || expanded ? publications.length : 3;
-  list.replaceChildren(...publications.slice(0,count).map(item=>{
+  list.replaceChildren(...publications.map(item=>{
     const row=document.createElement('article'); row.className='publication';
     const figure=document.createElement('figure'); figure.className='pub-figure';
     if(item.image){
@@ -28,10 +30,6 @@ function renderPublications(){
       const caption=document.createElement('figcaption'); caption.textContent=item.caption;
       if(item.caption.includes('CC BY')){const license=document.createElement('a');license.href='https://creativecommons.org/licenses/by/4.0/';license.target='_blank';license.rel='noopener noreferrer';license.textContent=' · license';caption.append(license)}
       figure.append(image,caption);
-    }else{
-      const unavailable=document.createElement('div'); unavailable.className='pub-unavailable'; unavailable.textContent='Article image unavailable';
-      const caption=document.createElement('figcaption'); caption.textContent='eLIBRARY · original paper required';
-      figure.append(unavailable,caption);
     }
     const details=document.createElement('div'); details.className='pub-details';
     const meta=document.createElement('div'); meta.className='pub-meta'; meta.textContent=`${item.year} · ${item.journal}`;
@@ -39,25 +37,53 @@ function renderPublications(){
     const link=document.createElement('a'); link.href=item.url; link.target='_blank'; link.rel='noopener noreferrer'; link.textContent=item.label;
     details.append(meta,title,link); row.append(figure,details); return row;
   }));
-  more.hidden=mode==='research'; more.setAttribute('aria-expanded',String(expanded)); more.textContent=expanded?'Show fewer publications':'Show all publications';
+  updateCarousel();
+}
+function updateCarousel(){
+  const visual=document.body.dataset.layout==='visual';
+  const slides=[...list.children];
+  list.style.transform=visual?`translateX(-${publicationIndex*100}%)`:'';
+  slides.forEach((slide,index)=>{
+    if(visual){slide.setAttribute('aria-hidden',String(index!==publicationIndex));slide.inert=index!==publicationIndex}
+    else{slide.removeAttribute('aria-hidden');slide.inert=false}
+  });
+  count.textContent=`${publicationIndex+1} / ${slides.length}`;
+  prev.disabled=publicationIndex===0;
+  next.disabled=publicationIndex===slides.length-1;
 }
 function setMode(next){
   mode=next; document.body.dataset.mode=next;
   document.querySelectorAll('.mode').forEach(button=>{const active=button.dataset.mode===next;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))});
   document.querySelectorAll('[data-copy]').forEach(element=>element.hidden=element.dataset.copy!==next);
   document.querySelectorAll('.research-extra').forEach(element=>element.hidden=next!=='research');
-  renderPublications();
   try{localStorage.setItem('portfolio-mode',next)}catch{}
 }
 function setLayout(next){
   document.body.dataset.layout=next;
+  publicationIndex=0;
+  viewport.tabIndex=next==='visual'?0:-1;
+  updateCarousel();
   document.querySelectorAll('.layout-button').forEach(button=>{const active=button.dataset.layout===next;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))});
   try{localStorage.setItem('portfolio-layout',next)}catch{}
 }
 document.querySelectorAll('.mode').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mode)));
 document.querySelectorAll('.layout-button').forEach(button=>button.addEventListener('click',()=>setLayout(button.dataset.layout)));
-more.addEventListener('click',()=>{expanded=!expanded;renderPublications()});
+prev.addEventListener('click',()=>{publicationIndex=Math.max(0,publicationIndex-1);updateCarousel()});
+next.addEventListener('click',()=>{publicationIndex=Math.min(publications.length-1,publicationIndex+1);updateCarousel()});
+viewport.addEventListener('keydown',event=>{
+  if(document.body.dataset.layout!=='visual')return;
+  if(event.key==='ArrowRight'&&publicationIndex<publications.length-1){event.preventDefault();next.click()}
+  if(event.key==='ArrowLeft'&&publicationIndex>0){event.preventDefault();prev.click()}
+});
+let touchStart=0;
+viewport.addEventListener('touchstart',event=>{touchStart=event.changedTouches[0].screenX},{passive:true});
+viewport.addEventListener('touchend',event=>{
+  if(document.body.dataset.layout!=='visual')return;
+  const delta=event.changedTouches[0].screenX-touchStart;
+  if(Math.abs(delta)>45)(delta<0?next:prev).click();
+},{passive:true});
 document.getElementById('rid-list').replaceChildren(...rights.map(([number,title,date])=>{const card=document.createElement('article');card.className='rid-card';const label=document.createElement('span');label.textContent=`No. ${number} · ${date}`;const heading=document.createElement('h3');heading.textContent=title;card.append(label,heading);return card}));
 document.getElementById('year').textContent=new Date().getFullYear();
 let savedMode='ml';let savedLayout='plain';try{savedMode=localStorage.getItem('portfolio-mode')||'ml';savedLayout=localStorage.getItem('portfolio-layout')||'plain'}catch{}
+renderPublications();
 setMode(savedMode==='research'?'research':'ml');setLayout(savedLayout==='visual'?'visual':'plain');

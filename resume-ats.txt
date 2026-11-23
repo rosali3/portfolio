@@ -1,6 +1,6 @@
 ROZALIIA NABIULLINA
 Biomedical Computer Vision Engineer | ML Engineer | Biomedical Image Analysis
-Rostov-on-Don, Russia
+Available for remote work
 Email: nabiullina.study@gmail.com
 Telegram: https://t.me/NabiullinaRD
 ORCID: https://orcid.org/0009-0009-0685-5281
@@ -9,6 +9,10 @@ GitHub: https://github.com/rosali3
 
 PROFESSIONAL SUMMARY
 Computer vision engineer working in biomedical image analysis. Experience with SAM, DINO-SwinL, AutoGluon, MLflow, annotation workflows, and cell detection and counting. A multiclass leukocyte detection project achieved mAP@50 of 0.755.
+
+SELECTED PROJECT
+Summer with AIRI summer school, Avito case, 2026: Contributed to room segmentation in real estate floor plans and a public inference pipeline.
+GitHub: https://github.com/rosali3/avito_prod
 
 TECHNICAL SKILLS
 Python, SQL (PostgreSQL), Linux Ubuntu, scikit-learn, PyTorch, Git, Airflow, MLflow, ONNX, AutoGluon, SAM, DINO-SwinL, computer vision, object detection, biomedical image analysis.
@@ -58,6 +62,7 @@ No. 2026660701, Neural-network messenger bot for automated cell culture counting
 No. 2026669583, Software module for assessing image annotation quality, 2026.
 
 AWARDS
+UMNIK grant winner, RUB 500,000.
 Presidential Scholarship for Students, 2025 to 2026.
 Alfa Future Scholarship, 2025 to 2026.
 Moscow Government voluntary qualification exam, 3rd place in Business Analysis, December 2023.

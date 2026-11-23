@@ -6,7 +6,7 @@ Live site: https://rosali3.github.io/portfolio/
 
 ## Publication images
 
-Figures from five open-access papers and first-page previews from two additional papers are shown in the visual layout. Each has a source caption. The eLIBRARY paper has no image because its full text is unavailable. The simple layout presents publications as text.
+The visual layout presents one publication at a time in a sliding gallery, with keyboard and touch navigation. The eLIBRARY paper now includes Figure 2 extracted from the PDF supplied by the author. The simple layout presents all publications as text.
 
 ## Publishing
 
