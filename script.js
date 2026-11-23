@@ -26,7 +26,7 @@ function renderPublications(){
     const row=document.createElement('article'); row.className='publication';
     const figure=document.createElement('figure'); figure.className='pub-figure';
     if(item.image){
-      const image=document.createElement('img'); image.src=`./assets/publications/${item.image}`; image.alt=item.alt; image.loading='lazy'; image.decoding='async';
+      const image=document.createElement('img'); image.src=`./assets/publications/${item.image}`; image.alt=item.alt; image.loading='eager'; image.decoding='async';
       const caption=document.createElement('figcaption'); caption.textContent=item.caption;
       if(item.caption.includes('CC BY')){const license=document.createElement('a');license.href='https://creativecommons.org/licenses/by/4.0/';license.target='_blank';license.rel='noopener noreferrer';license.textContent=' · license';caption.append(license)}
       figure.append(image,caption);
