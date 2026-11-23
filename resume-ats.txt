@@ -1,0 +1,61 @@
+РОЗАЛИЯ НАБИУЛЛИНА
+Computer Vision Engineer | Data Science | Biomedical AI
+Ростов-на-Дону, Россия
+Телефон: +7 900 084 0783
+Email: nabiullina.study@gmail.com
+Telegram: https://t.me/NabiullinaRD
+ORCID: https://orcid.org/0009-0009-0685-5281
+Google Scholar: https://scholar.google.com/citations?user=N9UL7-AAAAAJ
+
+ПРОФИЛЬ
+Инженер компьютерного зрения в области биомедицинских изображений. Опыт работы с SAM, DINO-SwinL, AutoGluon, MLflow, разметкой данных, детекцией и подсчётом клеток. В задаче многоклассовой детекции лейкоцитов достигнут mAP@50 0.755.
+
+НАВЫКИ
+Python; SQL (PostgreSQL); Linux Ubuntu; scikit-learn; PyTorch; Git; Airflow; MLflow; ONNX; AutoGluon; SAM; DINO-SwinL; Computer Vision; object detection; biomedical imaging.
+
+ОПЫТ
+Computer Vision Engineer, исследовательская лаборатория «Медицинские цифровые изображения на основе базисной модели», Донской государственный технический университет
+Апрель 2024 — настоящее время
+- В команде разработала сервис работы с моделями SAM и DINO-SwinL через AutoGluon.
+- Занимается MLOps с MLflow и поддержкой работы моделей.
+- Работает с командой разметки и участвует в разметке данных.
+- Подготавливает отчёты, инструкции и материалы для научных публикаций и конференций.
+- Пример результата: многоклассовая детекция лейкоцитов, mAP@50 0.755.
+
+Computer Vision Engineer, дипломный проект «Разработка ПО по подсчёту биологических клеток»
+Сентябрь 2023 — июнь 2024
+- Подбор и fine-tuning модели компьютерного зрения.
+- Создание Telegram-бота для использования решения.
+
+Младший ассистент, The Experts. School of Analytics
+Июль 2026 — настоящее время
+- Оценка решений команд во вступительных хакатонах.
+
+ОБРАЗОВАНИЕ
+Донской государственный технический университет, магистратура, ветеринарно-санитарная экспертиза и клиническая лабораторная диагностика, 2024–2026.
+Донской государственный технический университет, бакалавриат, прикладная информатика, 2022–2024.
+Тюменский государственный университет, бакалавриат, прикладная информатика, 2020–2024.
+
+ДОПОЛНИТЕЛЬНОЕ ОБУЧЕНИЕ
+Stepik, «Анализ и визуализация данных», май 2023.
+Иннополис, администрирование операционных систем семейства Linux, октябрь–декабрь 2023.
+Школа-интенсив SQL от DBI, январь–март 2024.
+EntSpace Global Entrepreneurship Program, апрель–октябрь 2024, грант на обучение.
+The Experts. School of Analytics, 2025–2026, грант на обучение.
+Летняя школа «Лето с AIRI», 2026, кейс Авито.
+
+ПУБЛИКАЦИИ
+Nabiullina R. et al. 3D Bioprinting of Cultivated Meat Followed by the Development of a Fine-Tuned YOLO Model. Frontiers in Bioscience, 2025. DOI: 10.31083/FBL36266.
+Kirichenko E. et al. The Role of Hydrogen Sulfide in the Localization and Structural–Functional Organization of p53 Following Traumatic Brain Injury. International Journal of Molecular Sciences, 2025. DOI: 10.3390/ijms26115066.
+Nwosu C. et al. Investigation of the Expression, Localization, and Acidosis-Associated Conformational Changes in Connexin 43 in Traumatic Brain Injury. International Journal of Molecular Sciences, 2025. DOI: 10.3390/ijms26188855.
+Kit O. et al. Mirror Effect of Parvalbumin and Connexin 43 Expression in the Acute and Subacute Phases After Penetrating Traumatic Brain Injury. Molecules, 2026. DOI: 10.3390/molecules31061018.
+Rodkin S. et al. Changes in Connexin-43 Expression and Neuropil Ultrastructure in the Cerebral Cortex of Bats During the Sleep–Wake Cycle. International Journal of Molecular Sciences, 2026. DOI: 10.3390/ijms27209171.
+
+НАГРАДЫ
+Стипендия Президента РФ для студентов, 2025–2026.
+«Альфа-Будущее.Стипендия», 2025–2026.
+Добровольный квалификационный экзамен Правительства Москвы, 3-е место по специальности «Бизнес-аналитик», декабрь 2023.
+Антихакатон банка «Центр-инвест», 2-е место, март 2024.
+
+ЯЗЫКИ
+Русский — родной; английский — B2; испанский — A2.
